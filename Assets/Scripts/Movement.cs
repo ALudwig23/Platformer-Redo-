@@ -4,17 +4,90 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    protected Rigidbody2D _rigidbody2D;
-    protected 
+    public float acceleration = 10f;
+    public float jumpForce = 16f;
+    public float castDistance;
+
+    protected bool _isGrounded = false;
+    protected bool _isJumping = false;
+    protected bool _jumpInputHeld = false;
+
+    public Vector2 boxSize;
+    public LayerMask groundLayer;
+    protected Vector2 _inputDirection;
+
+    protected Rigidbody2D _rigidbody2d;
+    protected Collider2D _collider2d;
     void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2d = GetComponent<Rigidbody2D>();
+        _collider2d = GetComponent<Collider2D>();
+    }
+
+    void Update()
+    {
+        HandleInput();
+    }
+
+    void FixedUpdate()
+    {
+        CheckGround();
+        HorizontalMovement();
+        
+    }
+
+    protected virtual void HandleInput()
+    {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void HorizontalMovement()
     {
+        Vector3 targetvelocity = Vector3.zero;
+
+        if (_isGrounded == true)
+        {
+            targetvelocity = new Vector2(_inputDirection.x * acceleration, 0f);
+        }
+        else
+        {
+            targetvelocity = new Vector2(_inputDirection.x * acceleration, _rigidbody2d.velocity.y);
+        }
+
+        _rigidbody2d.velocity = targetvelocity;
+    }
+
+    protected void VerticalMovement()
+    {
+        if (_jumpInputHeld == true)
+        {
+            Debug.Log("Should jump");
+            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpForce);
+        }
+        if (_jumpInputHeld == false)
+        {
+            //Debug.Log("Should Fall");
+            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.5f);
+        }
         
+    }
+
+    void CheckGround()
+    {
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
+        {
+            _isGrounded = true;
+            //Debug.Log($"Grounded: {_isGrounded}");
+        }
+        else
+        {       
+            _isGrounded = false;
+            //Debug.Log($"Grounded: {_isGrounded}");
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
     }
 }
