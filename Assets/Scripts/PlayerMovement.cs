@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : Movement
 {
-    protected override void HandleInput()
+    protected override void HandleVerticalInput()
     {
         _inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
@@ -12,14 +12,22 @@ public class PlayerMovement : Movement
         {
             Debug.Log("Jump held");
             _jumpInputHeld = true;
+            VerticalMovement();
         }
         if (Input.GetButtonUp("Jump") && _rigidbody2d.velocity.y > 0f)
         {
             Debug.Log("Jump not held");
             _jumpInputHeld = false;
+            VerticalMovement();
         }
+    }
 
-        VerticalMovement();
+    protected override void HandleHorizontalInput()
+    {
+        if (Input.GetButton("Horizontal"))
+        {
+            HorizontalMovement();
+        }
     }
 }
 

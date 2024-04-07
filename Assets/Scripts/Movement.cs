@@ -26,35 +26,28 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
+        HandleVerticalInput();
     }
 
     void FixedUpdate()
     {
         CheckGround();
-        HorizontalMovement();
-        
+        HandleHorizontalInput(); 
     }
 
-    protected virtual void HandleInput()
+    protected virtual void HandleVerticalInput()
+    {
+
+    }
+
+    protected virtual void HandleHorizontalInput()
     {
 
     }
 
     protected void HorizontalMovement()
     {
-        Vector3 targetvelocity = Vector3.zero;
-
-        if (_isGrounded == true)
-        {
-            targetvelocity = new Vector2(_inputDirection.x * acceleration, 0f);
-        }
-        else
-        {
-            targetvelocity = new Vector2(_inputDirection.x * acceleration, _rigidbody2d.velocity.y);
-        }
-
-        _rigidbody2d.velocity = targetvelocity;
+        _rigidbody2d.velocity = new Vector2(_inputDirection.x * acceleration, _rigidbody2d.velocity.y);
     }
 
     protected void VerticalMovement()
