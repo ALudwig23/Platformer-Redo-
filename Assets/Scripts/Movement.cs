@@ -32,15 +32,10 @@ public class Movement : MonoBehaviour
     void FixedUpdate()
     {
         CheckGround();
-        HandleHorizontalInput(); 
+        HorizontalMovement();
     }
 
     protected virtual void HandleVerticalInput()
-    {
-
-    }
-
-    protected virtual void HandleHorizontalInput()
     {
 
     }

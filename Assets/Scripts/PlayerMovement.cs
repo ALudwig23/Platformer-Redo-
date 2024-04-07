@@ -21,13 +21,5 @@ public class PlayerMovement : Movement
             VerticalMovement();
         }
     }
-
-    protected override void HandleHorizontalInput()
-    {
-        if (Input.GetButton("Horizontal"))
-        {
-            HorizontalMovement();
-        }
-    }
 }
 
