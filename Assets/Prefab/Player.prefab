@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6991197090686281555}
   - component: {fileID: 3896671189395372905}
+  - component: {fileID: 360051099792217958}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -84,6 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &360051099792217958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037581084037413685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0caf93ff5346b4bb33c9e6c32eec18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isFacingRight: 1
 --- !u!1 &4731515487034821731
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +112,7 @@ GameObject:
   - component: {fileID: 9189523380390197026}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +220,8 @@ MonoBehaviour:
   acceleration: 10
   jumpForce: 16
   castDistance: 0.5
+  _isMovingRight: 0
   boxSize: {x: 0.5, y: 0.2}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64

@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     public float jumpForce = 16f;
     public float castDistance;
 
+    public bool _isMovingRight;
+
     protected bool _isGrounded = false;
     protected bool _isJumping = false;
     protected bool _jumpInputHeld = false;
@@ -26,16 +28,28 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        HandleVerticalInput();
+        HandleInput();
+        HandleVertical();
     }
 
     void FixedUpdate()
     {
         CheckGround();
+        HandleHorizontal();
         HorizontalMovement();
+        Flip();
     }
 
-    protected virtual void HandleVerticalInput()
+    protected virtual void HandleInput()
+    {
+
+    }
+    protected virtual void HandleVertical()
+    {
+
+    }
+
+    protected virtual void HandleHorizontal()
     {
 
     }
@@ -55,7 +69,7 @@ public class Movement : MonoBehaviour
         if (_jumpInputHeld == false)
         {
             //Debug.Log("Should Fall");
-            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.5f);
+            _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.3f);
         }
         
     }
@@ -74,8 +88,24 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
+    }
+
+    void Flip()
+    {
+        if (_inputDirection.x == 0)
+            return;
+
+        if (_inputDirection.x > 0)
+        {
+            _isMovingRight = true;
+        }
+
+        if (_inputDirection.x < 0)
+        {
+            _isMovingRight = false;
+        }
     }
 }
