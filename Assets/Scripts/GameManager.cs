@@ -5,43 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    protected int CurrentLevel;
-    public static GameManager Instance
+    protected int CurrentLevel = 0;
+    private static GameManager m_Instance = null;
+    void Awake()
     {
-        get
+        if (m_Instance == null)
         {
+
+            m_Instance = (GameManager)FindObjectOfType(typeof(GameManager));
             if (m_Instance == null)
             {
-                m_Instance = (GameManager)FindObjectOfType(typeof(GameManager));
-                if (m_Instance == null)
-                {
-                    GameObject gameObject = new GameObject();
-                    m_Instance = gameObject.AddComponent<GameManager>();
-                }
-                DontDestroyOnLoad(m_Instance.gameObject);
+                GameObject gameObject = new GameObject();
+                m_Instance = gameObject.AddComponent<GameManager>();
             }
-            return m_Instance;
+            DontDestroyOnLoad(m_Instance.gameObject);
         }
     }
 
-    private static GameManager m_Instance = null;
-
-    public void StartGame()
+    private void Start()
     {
-        CurrentLevel = 1;
-        SceneManager.LoadScene(1);
+        DontDestroyOnLoad (m_Instance.gameObject);
     }
 
     public void ToNextLevel()
     {
         if (CurrentLevel == 2)
         {
-            CurrentLevel = 1;
-            SceneManager.LoadScene(0);
+            CurrentLevel = 0;
+            SceneManager.LoadScene(CurrentLevel);
             return;
         }
-        CurrentLevel = 2;
-        SceneManager.LoadScene(2);
+        CurrentLevel++;
+        SceneManager.LoadScene(CurrentLevel);
     }
 
 }
