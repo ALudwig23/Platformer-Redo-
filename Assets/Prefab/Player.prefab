@@ -194,7 +194,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e57d47cfd161bdd4ebd6f59ce48bd03f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
   jumpForce: 16
   castDistance: 0.5
   _isMovingRight: 0
-  boxSize: {x: 0.5, y: 0.2}
+  boxSize: {x: 0.9, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

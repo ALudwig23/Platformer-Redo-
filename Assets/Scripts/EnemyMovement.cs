@@ -5,20 +5,15 @@ using UnityEngine;
 public class EnemyMovement : Movement
 {
     public Transform Target;
+    public EnemyVision _enemyVision;
     public EnemyBoundary _enemyBoundary;
     public EnemyBoundary _enemyBoundary2;
-
-    protected bool _playerSpotted = false;
-    protected bool _flipDirection = false;
 
     protected override void HandleHorizontal()
     {
         
-        if (_playerSpotted == true)
+        if (_enemyVision._playerFound == true)
         {
-            if (_enemyBoundary == null)
-                return;
-
             if (Target == null)
             {
                 Target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -26,36 +21,47 @@ public class EnemyMovement : Movement
             if (Target == null)
                 return;
 
-            Vector2 TargetDirection = Target.position - transform.position;
-            TargetDirection = TargetDirection.normalized;
+            if (_isMovingRight == true && Target.position.x > transform.position.x || _isMovingRight == false && Target.position.x < transform.position.x)
+            {
+                acceleration = 7f;
 
-            _inputDirection = TargetDirection;
+                Vector2 TargetDirection = Target.position - transform.position;
+                TargetDirection = TargetDirection.normalized;
+
+                _inputDirection = TargetDirection;
+            }
+            else
+            {
+                acceleration = 3f;
+            }
+
         }
-
-        if (_playerSpotted == false)
+        if (_enemyVision._playerFound == false)
         {
-            if (_inputDirection.x == 0)
-            {
-                _inputDirection = Vector2.right;
-            }
-            if (_enemyBoundary.EnemyCheck == true || _enemyBoundary2.EnemyCheck == true)
-            {
-                _flipDirection = !_flipDirection;
-
-                if (_flipDirection)
-                {
-                    //Debug.Log("Moving Left");
-                    _inputDirection = Vector2.left;
-                }
-                if (!_flipDirection)
-                {
-                    //Debug.Log("Moving Right");
-                    _inputDirection = Vector2.right;
-                }
-            }
-
-            
+            acceleration = 3f;
         }
-        
+
+        //Debug.Log(_inputDirection.x);
+        if (_inputDirection.x == 0)
+        {
+            _inputDirection.x = 1;
+        }
+        if (_inputDirection.x > 0 && _inputDirection.x < 1)
+        {
+            _inputDirection.x = 1;
+        }
+        if (_inputDirection.x < 0 && _inputDirection.x > -1)
+        {
+            _inputDirection.x = -1;
+        }
+
+        if (_enemyBoundary == null)
+            return;
+
+        if (_enemyBoundary.EnemyCheck == true || _enemyBoundary2.EnemyCheck == true)
+        {
+            _inputDirection.x *= -1f;
+        }
+
     }
 }
