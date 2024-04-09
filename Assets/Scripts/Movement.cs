@@ -10,8 +10,10 @@ public class Movement : MonoBehaviour
 
     public bool _isMovingRight;
 
+    protected bool _isRunning;
+    protected bool _isJumping;
+    protected bool _isFalling;
     protected bool _isGrounded = false;
-    protected bool _isJumping = false;
     protected bool _jumpInputHeld = false;
 
     public Vector2 boxSize;
@@ -20,6 +22,13 @@ public class Movement : MonoBehaviour
 
     protected Rigidbody2D _rigidbody2d;
     protected Collider2D _collider2d;
+
+    public bool IsRunning { get { return _isRunning; } }
+    public bool IsJumping {  get { return _isJumping; } }
+    public bool IsFalling {  get { return _isFalling; } }
+    public bool IsGrounded {  get { return _isGrounded; } }
+
+    
     void Start()
     {
         _rigidbody2d = GetComponent<Rigidbody2D>();
@@ -30,6 +39,7 @@ public class Movement : MonoBehaviour
     {
         HandleInput();
         HandleVertical();
+        HandleAnimationParameter();
     }
 
     void FixedUpdate()
@@ -54,6 +64,11 @@ public class Movement : MonoBehaviour
 
     }
 
+    protected virtual void HandleAnimationParameter() 
+    {
+
+    }
+
     protected void HorizontalMovement()
     {
         _rigidbody2d.velocity = new Vector2(_inputDirection.x * acceleration, _rigidbody2d.velocity.y);
@@ -71,7 +86,6 @@ public class Movement : MonoBehaviour
             //Debug.Log("Should Fall");
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.3f);
         }
-        
     }
 
     void CheckGround()
@@ -79,6 +93,8 @@ public class Movement : MonoBehaviour
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
         {
             _isGrounded = true;
+            _isFalling = false;
+            _isJumping = false;
             //Debug.Log($"Grounded: {_isGrounded}");
         }
         else

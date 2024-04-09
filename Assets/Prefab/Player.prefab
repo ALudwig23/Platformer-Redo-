@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6991197090686281555}
   - component: {fileID: 3896671189395372905}
   - component: {fileID: 360051099792217958}
+  - component: {fileID: 177211373756444461}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -98,6 +99,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
+--- !u!95 &177211373756444461
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037581084037413685}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ccc1eb73612b7c84cacda28947123f7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4731515487034821731
 GameObject:
   m_ObjectHideFlags: 0

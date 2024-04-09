@@ -8,10 +8,12 @@ public class AnimationHandler : MonoBehaviour
 
     private Vector3 _currentScale = Vector3.one;
 
+    private Animator _animator; 
     private Movement _movement;
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _movement = transform.parent.GetComponent<Movement>();
 
         _currentScale = transform.localScale; 
@@ -49,5 +51,10 @@ public class AnimationHandler : MonoBehaviour
     {
         if (_movement == null)
             return;
+        
+        _animator.SetBool("isRunning", _movement.IsRunning);
+        _animator.SetBool("isJumping", _movement.IsJumping);
+        _animator.SetBool("isFalling", _movement.IsFalling);
+        _animator.SetBool("isGrounded", _movement.IsGrounded);
     }
 }
