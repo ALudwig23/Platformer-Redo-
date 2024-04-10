@@ -13,8 +13,11 @@ public class Movement : MonoBehaviour
     protected bool _isRunning;
     protected bool _isJumping;
     protected bool _isFalling;
-    protected bool _isGrounded = false;
-    protected bool _jumpInputHeld = false;
+    protected bool _isGrounded;
+    protected bool _jumpInputHeld;
+    protected bool _canJump;
+
+    public Cooldown CoyoteTime;
 
     public Vector2 boxSize;
     public LayerMask groundLayer;
@@ -39,7 +42,6 @@ public class Movement : MonoBehaviour
     {
         HandleInput();
         HandleVertical();
-        HandleAnimationParameter();
     }
 
     void FixedUpdate()
@@ -64,28 +66,37 @@ public class Movement : MonoBehaviour
 
     }
 
-    protected virtual void HandleAnimationParameter() 
-    {
-
-    }
-
     protected void HorizontalMovement()
     {
         _rigidbody2d.velocity = new Vector2(_inputDirection.x * acceleration, _rigidbody2d.velocity.y);
+
+        if (_rigidbody2d.velocity.x > 0 || _rigidbody2d.velocity.x < 0)
+        {
+            _isRunning = true;
+        }
+        else
+        {
+            _isRunning = false;
+        }
     }
 
     protected void VerticalMovement()
     {
         if (_jumpInputHeld == true)
         {
-            Debug.Log("Should jump");
+
+            //Debug.Log("Should jump");
+            _isJumping = true;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpForce);
+
         }
         if (_jumpInputHeld == false)
         {
             //Debug.Log("Should Fall");
+            _isJumping = false;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.3f);
         }
+
     }
 
     void CheckGround()
@@ -102,6 +113,7 @@ public class Movement : MonoBehaviour
             _isGrounded = false;
             //Debug.Log($"Grounded: {_isGrounded}");
         }
+
     }
 
     void OnDrawGizmos()

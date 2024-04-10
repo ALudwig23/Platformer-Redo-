@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cooldown : MonoBehaviour
+[Serializable]
+public class Cooldown
 {
-    [Serializable]
     public enum Progress {Ready, Started, InProgress, Finished}
     public Progress CurrentProgress = Progress.Ready;
 
@@ -49,6 +49,7 @@ public class Cooldown : MonoBehaviour
         {
             _currentDuration -= Time.deltaTime;
             CurrentProgress = Progress.InProgress;
+            //Debug.Log(_currentDuration.ToString());
 
             yield return null;
         }

@@ -242,7 +242,10 @@ MonoBehaviour:
   acceleration: 10
   jumpForce: 16
   castDistance: 0.5
-  _isMovingRight: 0
+  IsMovingRight: 0
+  CoyoteTime:
+    CurrentProgress: 0
+    Duration: 0.2
   boxSize: {x: 0.9, y: 0.2}
   groundLayer:
     serializedVersion: 2

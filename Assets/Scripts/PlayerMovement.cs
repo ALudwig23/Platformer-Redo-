@@ -25,36 +25,7 @@ public class PlayerMovement : Movement
             _jumpInputHeld = false;
             VerticalMovement();
         }
-    }
-    protected override void HandleAnimationParameter()
-    {
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            _isRunning = true;
-        }
-        if (Input.GetButtonUp("Horizontal"))
-        {
-            _isRunning = false;
-        }
 
-        if (Input.GetButton("Jump"))
-        {
-            _isJumping = true;
-        }
-        if (_rigidbody2d.velocity.y < 0f)
-        {
-            if (_isGrounded == true)
-            {
-                _isFalling = false;
-                _isJumping = false;
-            }
-            else
-            {
-                _isFalling = true;
-                _isJumping = false;
-            }
-            
-        }
     }
 }
 
