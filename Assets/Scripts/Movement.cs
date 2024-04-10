@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public float jumpForce = 16f;
     public float castDistance;
 
-    public bool _isMovingRight;
+    public bool IsMovingRight;
 
     protected bool _isRunning;
     protected bool _isJumping;
@@ -116,12 +116,12 @@ public class Movement : MonoBehaviour
 
         if (_inputDirection.x > 0)
         {
-            _isMovingRight = true;
+            IsMovingRight = true;
         }
 
         if (_inputDirection.x < 0)
         {
-            _isMovingRight = false;
+            IsMovingRight = false;
         }
     }
 }

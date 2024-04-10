@@ -30,11 +30,11 @@ public class AnimationHandler : MonoBehaviour
         if (_movement == null)
             return;
 
-        if (_movement._isMovingRight == true && !_isFacingRight)
+        if (_movement.IsMovingRight == true && !_isFacingRight)
         {
             FlipCheck();
         }
-        if (_movement._isMovingRight == false && _isFacingRight)
+        if (_movement.IsMovingRight == false && _isFacingRight)
         {
             FlipCheck();
         }

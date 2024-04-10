@@ -21,7 +21,7 @@ public class EnemyMovement : Movement
             if (Target == null)
                 return;
 
-            if (_isMovingRight == true && Target.position.x > transform.position.x || _isMovingRight == false && Target.position.x < transform.position.x)
+            if (IsMovingRight == true && Target.position.x > transform.position.x || IsMovingRight == false && Target.position.x < transform.position.x)
             {
                 acceleration = 7f;
 

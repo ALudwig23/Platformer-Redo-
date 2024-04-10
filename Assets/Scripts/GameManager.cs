@@ -7,36 +7,33 @@ public class GameManager : MonoBehaviour
 {
     protected int CurrentLevel = 0;
     private static GameManager m_Instance = null;
-    void Awake()
+    public static GameManager Instance
     {
-        if (m_Instance == null)
+        get
         {
-
-            m_Instance = (GameManager)FindObjectOfType(typeof(GameManager));
             if (m_Instance == null)
             {
-                GameObject gameObject = new GameObject();
-                m_Instance = gameObject.AddComponent<GameManager>();
+                m_Instance = (GameManager)FindObjectOfType(typeof(GameManager));
+                if (m_Instance == null)
+                {
+                    GameObject gameObject = new GameObject("GameManager");
+                    m_Instance = gameObject.AddComponent<GameManager>();
+                }
+                DontDestroyOnLoad(m_Instance.gameObject);
             }
-            DontDestroyOnLoad(m_Instance.gameObject);
+            return m_Instance;
         }
-    }
-
-    private void Start()
-    {
-        DontDestroyOnLoad (m_Instance.gameObject);
     }
 
     public void ToNextLevel()
     {
-        if (CurrentLevel == 2)
+        if (Instance.CurrentLevel == 2)
         {
-            CurrentLevel = 0;
-            SceneManager.LoadScene(CurrentLevel);
+            Instance.CurrentLevel = 0;
+            SceneManager.LoadScene(Instance.CurrentLevel);
             return;
         }
-        CurrentLevel++;
-        SceneManager.LoadScene(CurrentLevel);
+        Instance.CurrentLevel++;
+        SceneManager.LoadScene(Instance.CurrentLevel);
     }
-
 }
