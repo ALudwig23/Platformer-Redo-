@@ -245,8 +245,8 @@ MonoBehaviour:
   IsMovingRight: 0
   CoyoteTime:
     CurrentProgress: 0
-    Duration: 0.2
-  boxSize: {x: 0.9, y: 0.2}
+    Duration: 0.5
+  boxSize: {x: 0.8, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

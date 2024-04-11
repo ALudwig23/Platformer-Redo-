@@ -14,8 +14,8 @@ public class CoroutineHost : MonoBehaviour
                 m_Instance = (CoroutineHost)FindObjectOfType(typeof(CoroutineHost));
                 if (m_Instance == null)
                 {
-                    GameObject gameObject = new GameObject("CoroutineHost");
-                    m_Instance = gameObject.AddComponent<CoroutineHost>();
+                    GameObject go = new GameObject("CoroutineHost");
+                    m_Instance = go.AddComponent<CoroutineHost>();
                 }
                 DontDestroyOnLoad(m_Instance.gameObject);
             }

@@ -12,8 +12,7 @@ public class PlayerMovement : Movement
 
     protected override void HandleVertical()
     {
-
-        if (Input.GetButtonDown("Jump") && _isGrounded == true)
+        if (Input.GetButtonDown("Jump") && _isGrounded || Input.GetButtonDown("Jump") && CoyoteTime.CurrentProgress == Cooldown.Progress.InProgress)
         {
             //Debug.Log("Jump held");
             _jumpInputHeld = true;
@@ -26,6 +25,21 @@ public class PlayerMovement : Movement
             VerticalMovement();
         }
 
+        if (_rigidbody2d.velocity.y > 0f && !_isGrounded)
+        {
+            _isJumping = true;
+            _isFalling = false;
+            _canCoyoteJump = false;
+        }
+
+        if (_rigidbody2d.velocity.y < 0f && !_isGrounded)
+        {
+            _isFalling = true;
+            if (!_isJumping)
+            {
+                _canCoyoteJump = true;
+            }
+        }
     }
 }
 

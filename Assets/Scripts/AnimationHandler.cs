@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    public bool _isFacingRight = true;
+    public bool _isFacingRight;
 
     private Vector3 _currentScale = Vector3.one;
 
@@ -34,7 +34,7 @@ public class AnimationHandler : MonoBehaviour
         {
             FlipCheck();
         }
-        if (_movement.IsMovingRight == false && _isFacingRight)
+        if (_movement.IsMovingLeft == true && _isFacingRight)
         {
             FlipCheck();
         }

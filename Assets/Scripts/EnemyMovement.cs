@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyMovement : Movement
 {
@@ -24,11 +26,12 @@ public class EnemyMovement : Movement
             if (IsMovingRight == true && Target.position.x > transform.position.x || IsMovingRight == false && Target.position.x < transform.position.x)
             {
                 acceleration = 7f;
-
+                
                 Vector2 TargetDirection = Target.position - transform.position;
                 TargetDirection = TargetDirection.normalized;
 
                 _inputDirection = TargetDirection;
+                
             }
             else
             {

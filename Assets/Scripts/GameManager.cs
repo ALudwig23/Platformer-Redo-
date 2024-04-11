@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
                 m_Instance = (GameManager)FindObjectOfType(typeof(GameManager));
                 if (m_Instance == null)
                 {
-                    GameObject gameObject = new GameObject("GameManager");
-                    m_Instance = gameObject.AddComponent<GameManager>();
+                    GameObject go = new GameObject("GameManager");
+                    m_Instance = go.AddComponent<GameManager>();
                 }
                 DontDestroyOnLoad(m_Instance.gameObject);
             }

@@ -9,13 +9,14 @@ public class Movement : MonoBehaviour
     public float castDistance;
 
     public bool IsMovingRight;
+    public bool IsMovingLeft;
 
     protected bool _isRunning;
     protected bool _isJumping;
     protected bool _isFalling;
     protected bool _isGrounded;
     protected bool _jumpInputHeld;
-    protected bool _canJump;
+    protected bool _canCoyoteJump;
 
     public Cooldown CoyoteTime;
 
@@ -86,17 +87,14 @@ public class Movement : MonoBehaviour
         {
 
             //Debug.Log("Should jump");
-            _isJumping = true;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, jumpForce);
 
         }
         if (_jumpInputHeld == false)
         {
             //Debug.Log("Should Fall");
-            _isJumping = false;
             _rigidbody2d.velocity = new Vector2(_rigidbody2d.velocity.x, _rigidbody2d.velocity.y * 0.3f);
         }
-
     }
 
     void CheckGround()
@@ -113,7 +111,15 @@ public class Movement : MonoBehaviour
             _isGrounded = false;
             //Debug.Log($"Grounded: {_isGrounded}");
         }
-
+        if (_isGrounded && !_isJumping && CoyoteTime.CurrentProgress != Cooldown.Progress.Ready)
+        {
+            _canCoyoteJump = false;
+            CoyoteTime.StopCooldown();
+        }
+        if (_canCoyoteJump && CoyoteTime.CurrentProgress == Cooldown.Progress.Ready)
+        {
+            CoyoteTime.StartCooldown();
+        }
     }
 
     void OnDrawGizmos()
@@ -129,11 +135,13 @@ public class Movement : MonoBehaviour
         if (_inputDirection.x > 0)
         {
             IsMovingRight = true;
+            IsMovingLeft = false;
         }
 
         if (_inputDirection.x < 0)
         {
             IsMovingRight = false;
+            IsMovingLeft = true;
         }
     }
 }
