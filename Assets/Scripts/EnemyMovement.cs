@@ -27,11 +27,6 @@ public class EnemyMovement : Movement
             {
                 acceleration = 7f;
                 
-                Vector2 TargetDirection = Target.position - transform.position;
-                TargetDirection = TargetDirection.normalized;
-
-                _inputDirection = TargetDirection;
-                
             }
             else
             {

@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 6467460344600448229}
   - component: {fileID: 5483316489812473259}
   - component: {fileID: 9189523380390197026}
+  - component: {fileID: 302416241640375977}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -239,14 +240,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd139c023e3cb1d419ecbc1a16d011cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
-  jumpForce: 16
+  acceleration: 7
+  jumpForce: 14
   castDistance: 0.5
   IsMovingRight: 0
+  IsMovingLeft: 0
   CoyoteTime:
     CurrentProgress: 0
-    Duration: 0.5
+    Duration: 0.15
   boxSize: {x: 0.8, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &302416241640375977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731515487034821731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e567681343ec14a8efaf9055876d41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Invulnerability:
+    CurrentProgress: 0
+    Duration: 1
+  Maxhealth: 10

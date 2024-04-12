@@ -20,12 +20,20 @@ public class ExclamationMark : MonoBehaviour
                 if (gameObject.GetComponent<SpriteRenderer>() == null)
                 {
                     Debug.Log("Adding sprite");
-                    //Instantiate(this.gameObject, new Vector3(0, 2, 0), transform.rotation);
                     gameObject.AddComponent<SpriteRenderer>().sprite = Exclamation;
                 }
 
             }
+            else
+            {
+                if (gameObject.GetComponent<SpriteRenderer>() != null)
+                {
+                    Destroy(gameObject.GetComponent<SpriteRenderer>());
+                }
+            }
+
         }
+
         if (_enemyVision._playerFound == false)
         {
             if (gameObject.GetComponent<SpriteRenderer>() != null)

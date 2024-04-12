@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    protected int CurrentLevel = 0;
+    public int CurrentLevel = 0;
     private static GameManager m_Instance = null;
     public static GameManager Instance
     {
@@ -35,5 +35,10 @@ public class GameManager : MonoBehaviour
         }
         Instance.CurrentLevel++;
         SceneManager.LoadScene(Instance.CurrentLevel);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
