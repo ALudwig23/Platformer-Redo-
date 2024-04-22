@@ -11,15 +11,18 @@ public class Health : MonoBehaviour
     public ResetEvent OnHitReset;
     public Cooldown Invulnerability;
 
-    public float Maxhealth = 10f;
+    public float Maxhealth = 3f;
 
-    private float _currenthealth = 10f;
+    protected GameManager _gameManager;
+
+    private float _currenthealth = 3f;
     private bool _canDamage = true;
 
     public float CurrentHealth {  get { return _currenthealth; } }
 
     void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         ResetHealthToMax();
     }
 
@@ -47,6 +50,7 @@ public class Health : MonoBehaviour
 
         _currenthealth -= damage;
 
+        Debug.Log(_currenthealth);
         if ( _currenthealth <= 0f)
         {
             Die();
@@ -60,6 +64,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         Destroy(this.gameObject);
+        _gameManager.ToNextLevel();
     }
     void ResetHealthToMax()
     {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4588937359627151083}
   - component: {fileID: 1439595297688874814}
   - component: {fileID: 2530542265785788284}
+  - component: {fileID: 4481309461052137494}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -124,6 +125,7 @@ MonoBehaviour:
   jumpForce: 16
   castDistance: 0.5
   IsMovingRight: 0
+  IsMovingLeft: 0
   CoyoteTime:
     CurrentProgress: 0
     Duration: 1
@@ -135,6 +137,20 @@ MonoBehaviour:
   _enemyVision: {fileID: 0}
   _enemyBoundary: {fileID: 0}
   _enemyBoundary2: {fileID: 0}
+--- !u!114 &4481309461052137494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3350543174394158799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9309500d3505fb4fa0a6ff9221c87a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageDealt: 1
+  Source: {fileID: 0}
 --- !u!1 &5755176965314410203
 GameObject:
   m_ObjectHideFlags: 0
