@@ -19,7 +19,7 @@ public class ExclamationMark : MonoBehaviour
             {
                 if (gameObject.GetComponent<SpriteRenderer>() == null)
                 {
-                    Debug.Log("Adding sprite");
+                    //Debug.Log("Adding sprite");
                     gameObject.AddComponent<SpriteRenderer>().sprite = Exclamation;
                 }
 

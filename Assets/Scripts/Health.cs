@@ -64,6 +64,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         Destroy(this.gameObject);
+        _gameManager.CurrentLevel--;
         _gameManager.ToNextLevel();
     }
     void ResetHealthToMax()
