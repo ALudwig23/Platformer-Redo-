@@ -8,6 +8,7 @@ TagManager:
   - MovingPlatform
   - PlatformBoundary
   - DissapearingBlock
+  - GiantBoundary
   layers:
   - Default
   - TransparentFX

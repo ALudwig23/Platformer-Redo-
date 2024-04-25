@@ -11,7 +11,7 @@ public class WallMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rigidbody2d.velocity = new Vector2(1,0);
+        _rigidbody2d.velocity = new Vector2(2,0);
     }
 
 }

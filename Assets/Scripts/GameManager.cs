@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public void ToNextLevel()
     {
-        if (Instance.CurrentLevel == 2)
+        if (Instance.CurrentLevel == 3)
         {
             Instance.CurrentLevel = 0;
             SceneManager.LoadScene(Instance.CurrentLevel);
