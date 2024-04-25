@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     public HitEvent OnHit;
     public ResetEvent OnHitReset;
     public Cooldown Invulnerability;
+    public AudioSource HitSound;
 
     public float Maxhealth = 3f;
 
@@ -49,8 +50,9 @@ public class Health : MonoBehaviour
             return;
 
         _currenthealth -= damage;
+        HitSound.Play();
 
-        Debug.Log(_currenthealth);
+        Debug.Log("Hit");
         if ( _currenthealth <= 0f)
         {
             Die();

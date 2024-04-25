@@ -24,4 +24,21 @@ public class AddCameraMovement : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (MovingWall == null)
+                return;
+
+            MovingWall.AddComponent<WallMovement>();
+
+            if (Camera.GetComponent("CameraMovement") == null)
+            {
+                Camera.AddComponent<CameraMovement>();
+                Destroy(gameObject);
+            }
+        }
+    }
 }

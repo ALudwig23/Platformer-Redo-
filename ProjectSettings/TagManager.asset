@@ -9,6 +9,7 @@ TagManager:
   - PlatformBoundary
   - DissapearingBlock
   - GiantBoundary
+  - EndScene
   layers:
   - Default
   - TransparentFX
