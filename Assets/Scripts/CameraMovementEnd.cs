@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovementEnd : MonoBehaviour
 {
     private Transform EndScenePoint;
-    public Vector3 Offset = new Vector3(0, 0, -10);
+    public Vector3 Offset = new Vector3(0, -2, -10);
     void Start()
     {
         EndScenePoint = GameObject.FindWithTag("EndScene").transform;
